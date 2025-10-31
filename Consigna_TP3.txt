@@ -1,0 +1,19 @@
+Ejercicio C – Gestión de vehículos, conductores y viajes
+Desarrollar una aplicación que permita registrar los vehículos de una empresa de transporte, sus
+conductores y los viajes realizados. A parte de los requisitos generales el ejercicio debe cumplir lo
+siguiente:
+• Frontend:
+◦ Pantalla principal con paginas de:
+▪ Listado de vehículos.
+▪ Listado de conductores.
+▪ Carga y visualización de viajes por vehículos y conductores.
+◦ Formularios para alta, modificación y eliminación de vehículos y conductores.
+◦ Registro de viajes, asociando un vehículo y un conductor.
+◦ Consulta de historial de viajes por vehículo o por conductor.
+◦ Cálculo total de kilómetros recorridos por conductor o vehículo.
+• Backend:
+◦ Estructura de entidades:
+▪ Vehículo: id, marca, modelo, patente, año, capacidad de carga.
+▪ Conductor: id, nombre, apellido, DNI, licencia, fecha de vencimiento de licencia.
+▪ Viaje: id, vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino,
+kilómetros, observaciones.
