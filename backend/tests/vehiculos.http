@@ -1,0 +1,40 @@
+@base = http://localhost:4000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20iLCJpYXQiOjE3NjI1NTc3ODUsImV4cCI6MTc2MjU3MjE4NX0.lc8epDyhlY9hudqm7h5JsHB1mR7rYKZsk0l1U1PtdgE
+
+### Listar vehículos
+GET {{base}}/api/vehiculos
+Authorization: Bearer {{token}}
+
+### Obtener vehículo por ID
+GET {{base}}/api/vehiculos/1
+Authorization: Bearer {{token}}
+
+### Crear vehículo
+POST {{base}}/api/vehiculos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "marca": "Iveco",
+  "modelo": "Daily",
+  "patente": "AA123BBE",
+  "anio": 2020,
+  "capacidad_carga": 3500
+}
+
+### Actualizar vehículo
+PUT {{base}}/api/vehiculos/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "marca": "Iveco",
+  "modelo": "Daily Cargo",
+  "patente": "AA123BB",
+  "anio": 2021,
+  "capacidad_carga": 3600
+}
+
+### Eliminar vehículo
+DELETE {{base}}/api/vehiculos/1
+Authorization: Bearer {{token}}
