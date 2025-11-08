@@ -1,0 +1,40 @@
+@base = {{$dotenv BASE_URL}}
+@token = {{$dotenv TOKEN}}
+
+### Listar conductores
+GET {{base}}/api/conductores
+Authorization: Bearer {{token}}
+
+### Obtener conductor por ID
+GET {{base}}/api/conductores/1
+Authorization: Bearer {{token}}
+
+### Crear conductor
+POST {{base}}/api/conductores
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Juan",
+  "apellido": "Pérez",
+  "dni": "40123456",
+  "licencia": "A1",
+  "lic_vencimiento": "2027-05-12"
+}
+
+### Actualizar conductor
+PUT {{base}}/api/conductores/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "nombre": "Juan Carlos",
+  "apellido": "Pérez",
+  "dni": "40123456",
+  "licencia": "B2",
+  "lic_vencimiento": "2028-06-10"
+}
+
+### Eliminar conductor
+DELETE {{base}}/api/conductores/1
+Authorization: Bearer {{token}}

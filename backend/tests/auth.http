@@ -1,18 +1,21 @@
+@base = {{$dotenv BASE_URL}}
+
 ### Registro de usuario
-POST http://localhost:4000/api/auth/register
+POST {{base}}/api/auth/register
 Content-Type: application/json
 
 {
-  "nombre": "Matias",
-  "email": "matias@mail.com",
-  "password": "programacion123"
+  "nombre": "Admin",
+  "email": "admin@mail.com",
+  "password": "admin123"
 }
 
 ### Login de usuario
-POST http://localhost:4000/api/auth/login
+POST {{base}}/api/auth/login
 Content-Type: application/json
 
 {
   "email": "admin@mail.com",
   "password": "admin123"
 }
+

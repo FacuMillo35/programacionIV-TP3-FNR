@@ -1,0 +1,42 @@
+@base = {{$dotenv BASE_URL}}
+@token = {{$dotenv TOKEN}}
+
+### Listar todos los viajes
+GET {{base}}/api/viajes
+Authorization: Bearer {{token}}
+
+### Crear un nuevo viaje
+POST {{base}}/api/viajes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "vehiculo_id": 1,
+  "conductor_id": 1,
+  "fecha_salida": "2025-11-07 08:00:00",
+  "fecha_llegada": "2025-11-07 15:30:00",
+  "origen": "Buenos Aires",
+  "destino": "Córdoba",
+  "kilometros": 700,
+  "observaciones": "Sin incidentes"
+}
+
+### Obtener historial por vehículo
+GET {{base}}/api/viajes/historial?vehiculo_id=1
+Authorization: Bearer {{token}}
+
+### Obtener historial por conductor
+GET {{base}}/api/viajes/historial?conductor_id=1
+Authorization: Bearer {{token}}
+
+### Total de km por vehículo
+GET {{base}}/api/viajes/km/vehiculo/1
+Authorization: Bearer {{token}}
+
+### Total de km por conductor
+GET {{base}}/api/viajes/km/conductor/1
+Authorization: Bearer {{token}}
+
+### Eliminar viaje
+DELETE {{base}}/api/viajes/1
+Authorization: Bearer {{token}}
