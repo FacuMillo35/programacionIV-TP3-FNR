@@ -1,0 +1,172 @@
+/* ===============================
+   ESTILOS GENERALES
+=================================*/
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  color: #222;
+}
+
+.page {
+  padding: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* ===============================
+   NAVBAR
+=================================*/
+
+nav {
+  background: #0066cc;
+  padding: 14px 24px;
+  display: flex;
+  gap: 30px;
+  box-shadow: 0 2px 6px #00000022;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* ===============================
+   TITULOS
+=================================*/
+
+h1, h2, h3 {
+  color: #1d1d1d;
+  margin-top: 5px;
+}
+
+/* ===============================
+   FORMULARIOS
+=================================*/
+
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  background: white;
+  font-size: 15px;
+  color: #333;
+}
+
+.form-container textarea {
+  width: 280px;
+  height: 80px;
+  resize: vertical;
+}
+
+/* Botón */
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #0078ff;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px #00000033;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #005fcc;
+}
+
+/* Botón gris */
+button[style] {
+  background: #666 !important;
+}
+
+button[style]:hover {
+  background: #555 !important;
+}
+
+/* ===============================
+   TABLAS
+=================================*/
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px #00000022;
+}
+
+table th,
+table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+table th {
+  background: #f0f0f0;
+}
+
+table tr:hover {
+  background: #f9f9f9;
+}
+
+/* ===============================
+   Pagina de autenticación
+=================================*/
+
+.auth-box {
+  width: 380px;
+  margin: 100px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px #00000033;
+}
+
+.auth-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth-box input {
+  width: 100%;
+}
+
+.auth-box button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.auth-switch a {
+  color: #0066cc;
+  cursor: pointer;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}

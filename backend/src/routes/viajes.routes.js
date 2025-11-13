@@ -19,15 +19,27 @@ router.use(requireAuth);
 router.get("/", async (_req, res, next) => {
   try {
     const [rows] = await pool.query(`
-      SELECT v.id, v.fecha_salida, v.fecha_llegada, v.origen, v.destino,
-             v.kilometros, v.observaciones,
-             ve.marca AS vehiculo_marca, ve.modelo AS vehiculo_modelo, ve.patente,
-             c.nombre AS conductor_nombre, c.apellido AS conductor_apellido
+      SELECT 
+        v.id,
+        v.vehiculo_id,
+        v.conductor_id,
+        v.fecha_salida,
+        v.fecha_llegada,
+        v.origen,
+        v.destino,
+        v.kilometros,
+        v.observaciones,
+        ve.marca AS vehiculo_marca,
+        ve.modelo AS vehiculo_modelo,
+        ve.patente,
+        c.nombre AS conductor_nombre,
+        c.apellido AS conductor_apellido
       FROM viajes v
       JOIN vehiculos ve ON v.vehiculo_id = ve.id
       JOIN conductores c ON v.conductor_id = c.id
       ORDER BY v.id DESC
     `);
+
     res.json(rows);
   } catch (err) {
     next(err);
@@ -59,6 +71,7 @@ router.post("/", viajeBody, async (req, res, next) => {
       "SELECT id FROM vehiculos WHERE id = ?",
       [vehiculo_id]
     );
+
     const [[conductor]] = await pool.query(
       "SELECT id FROM conductores WHERE id = ?",
       [conductor_id]
@@ -70,7 +83,8 @@ router.post("/", viajeBody, async (req, res, next) => {
         .json({ message: "Vehículo o conductor inexistente" });
 
     const [result] = await pool.query(
-      `INSERT INTO viajes (vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino, kilometros, observaciones)
+      `INSERT INTO viajes 
+        (vehiculo_id, conductor_id, fecha_salida, fecha_llegada, origen, destino, kilometros, observaciones)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         vehiculo_id,
@@ -107,9 +121,10 @@ router.get("/historial", filtroHistorial, async (req, res, next) => {
         .json({ message: "Debe especificar vehiculo_id o conductor_id" });
 
     let sql = `
-      SELECT v.*, 
-             ve.marca, ve.modelo, ve.patente,
-             c.nombre, c.apellido
+      SELECT 
+        v.*,
+        ve.marca, ve.modelo, ve.patente,
+        c.nombre, c.apellido
       FROM viajes v
       JOIN vehiculos ve ON v.vehiculo_id = ve.id
       JOIN conductores c ON v.conductor_id = c.id
