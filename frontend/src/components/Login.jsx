@@ -1,33 +1,33 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import api from "../api/api";
-import Swal from "sweetalert2";
 
-export default function Login({ onLogin }) {
+export default function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await api.post("/auth/login", { email, password });
+      const { data } = await api.post("/auth/login", {
+        email,
+        password,
+      });
 
-      // Guardamos token y datos del usuario
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-
-      Swal.fire("Bienvenido", `Hola ${res.data.user.nombre}`, "success");
-
-      if (onLogin) onLogin(res.data.user);
-    } catch (error) {
-      Swal.fire("Error", "Credenciales incorrectas", "error");
+      localStorage.setItem("token", data.token);
+      navigate("/viajes");
+    } catch (err) {
+      alert("Credenciales incorrectas");
     }
   };
 
   return (
-    <div className="form-container">
+    <div className="auth-box">
       <h2>Iniciar sesión</h2>
-      <form onSubmit={handleSubmit}>
+
+      <form onSubmit={handleLogin}>
         <input
           type="email"
           placeholder="Correo electrónico"
@@ -35,6 +35,7 @@ export default function Login({ onLogin }) {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+
         <input
           type="password"
           placeholder="Contraseña"
@@ -42,8 +43,15 @@ export default function Login({ onLogin }) {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+
         <button type="submit">Ingresar</button>
       </form>
+
+      <div className="auth-switch">
+        ¿No tienes cuenta?
+        <br />
+        <Link to="/register">Registrarse</Link>
+      </div>
     </div>
   );
 }

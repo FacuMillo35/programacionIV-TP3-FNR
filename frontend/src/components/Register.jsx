@@ -1,53 +1,70 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../api/api";
-import Swal from "sweetalert2";
 
 export default function Register() {
-  const [nombre, setNombre] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [form, setForm] = useState({
+    nombre: "",
+    email: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      await api.post("/auth/register", { nombre, email, password });
-      Swal.fire("Registro exitoso", "Tu cuenta ha sido creada", "success");
-      setNombre("");
-      setEmail("");
-      setPassword("");
-    } catch (error) {
-      console.error(error);
-      Swal.fire("Error", "No se pudo registrar el usuario", "error");
+      await api.post("/auth/register", form);
+      navigate("/login");
+    } catch (err) {
+      alert("Error al registrarse");
     }
   };
 
   return (
-    <div className="form-container">
+    <div className="auth-box">
       <h2>Registro</h2>
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          name="nombre"
           placeholder="Nombre"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
+          value={form.nombre}
+          onChange={handleChange}
           required
         />
+
         <input
           type="email"
+          name="email"
           placeholder="Correo electrónico"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={form.email}
+          onChange={handleChange}
           required
         />
+
         <input
           type="password"
+          name="password"
           placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={form.password}
+          onChange={handleChange}
           required
         />
+
         <button type="submit">Registrarse</button>
       </form>
+
+      <div className="auth-switch">
+        ¿Ya tienes cuenta?
+        <br />
+        <Link to="/login">Iniciar sesión</Link>
+      </div>
     </div>
   );
 }
